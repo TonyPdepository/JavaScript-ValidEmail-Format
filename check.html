@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p>It only checks to make sure its in the right format. <br>
+    Then if good, we can submit it for email validation.
+</p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<label for="email">Enter Your Address</label>
+<input id="email" type="email">
+<button onclick="submit()">Submit</button>
+
+<p id="result"></p>
+
+<script>
+
+function validateEmail(email) {
+    const emailPattern = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+    const isValid = emailPattern.test(email);
+    return isValid
+};
+
+function submit() {
+    isEvalid = false;
+    const $result = $('#result');
+    const email = $('#email').val();
+    
+    if(email == ''){
+        $result.text('Nothing was entered.. ');
+        $result.css('color', 'red');
+    }
+
+    if(validateEmail(email) == true){
+        $result.text('We Can Continue.. Submited..');
+        $result.css('color', 'green');
+    }else{
+        $result.text('Not a valid entry....');
+        $result.css('color', 'red');
+    }
+
+}
+
+</script>
